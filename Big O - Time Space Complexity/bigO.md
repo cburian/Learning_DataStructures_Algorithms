@@ -19,8 +19,12 @@ basket and the same time to cook, whereas the Ramen noodles have a different
 relationship, each additional Ramen dinner takes one extra space in the basket 
 and 3 more minutes to make.
 
+![cooking](../Images/bigO_01a.png)
+
 Time and space complexity helps us compare and generalize these type of 
 situations.
+
+##### Left side of our complexity equation:
 
 ![Left side of complexity eq.](../Images/bigO_02.png)
  
@@ -29,6 +33,8 @@ operations performed by the algorithm, supposing that each elementary
 operation takes a fixed amount of time to perform." - Wikipedia
 
 ## Behavior, Relationships, and Operations
+
+##### Right side of our complexity equation:
 
 ![Right side of complexity eq.](../Images/bigO_03.png)
 
