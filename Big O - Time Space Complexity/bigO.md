@@ -88,7 +88,7 @@ towards the infinite
 
 #### Big-O Cheat Sheet:
 
-[Complexity Cheat Sheet](../Images/big O cheat sheet.png)
+![Complexity Cheat Sheet](../Images/big O cheat sheet.png)
 
 
 
