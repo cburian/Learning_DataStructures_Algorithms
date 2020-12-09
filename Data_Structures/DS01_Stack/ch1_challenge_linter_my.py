@@ -1,4 +1,4 @@
-from Chapter1_The_Stack.ch1_01_stack_class import Stack
+from Data_Structures.DS01_Stack.stack_class import Stack
 
 
 def balance(symbol_str):

@@ -1,8 +1,4 @@
-"""
-Correcting the first solution
-After check solution.
-"""
-from Chapter1_The_Stack.ch1_01_stack_class import Stack
+from Data_Structures.DS01_Stack.stack_class import Stack
 
 
 def balance(symbol_str):
@@ -12,25 +8,28 @@ def balance(symbol_str):
         '[': ']',
         '{': '}'
     }
-    openers = symbol_pairs.keys()
 
+    openers = symbol_pairs.keys()
     my_stack = Stack()
 
-    # measuring performance: Iterations:
     index = 0
-    for s in symbol_str:
-        if s in openers:  # symbol = opener
-            my_stack.push(s)
-        else:  # symbol = closer
+    while index < len(symbol_str):
+        symbol = symbol_str[index]
+
+        if symbol in openers:
+            my_stack.push(symbol)
+        else:  # the symbol is a closer
+
             # if the Stack is already empty, the
             # symbols are not balanced
             if my_stack.is_empty():
                 return False, index
-            # if still items in Stack, check for
-            # a mis-match:
+
+            # if there are still items in the
+            # Stack, check for mis-match.
             else:
                 top_item = my_stack.pop()
-                if s != symbol_pairs[top_item]:
+                if symbol != symbol_pairs[top_item]:
                     return False, index
 
         index += 1
@@ -42,7 +41,7 @@ def balance(symbol_str):
 
 
 test_data = ['([{}])', '(([{])', '([]{}())', '(((())))',
-             '[}([){]', '}[]{()}', '[(}[]{)]', '([]{}()))']
+             '[}([){]', '}[]{()}', '[(}[]{)]']
 
 for test in test_data:
     print(balance(test))
