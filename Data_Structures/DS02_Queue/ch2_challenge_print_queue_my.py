@@ -18,7 +18,7 @@ Requirements:
                    - print_job()
 """
 
-from Chapter2_The_Queue.ch2_01_queue_class import Queue
+from Data_Structures.DS02_Queue.ch2_01_queue_class import Queue
 
 from random import randint
 

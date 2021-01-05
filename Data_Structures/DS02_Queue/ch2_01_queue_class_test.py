@@ -1,4 +1,4 @@
-from Chapter2_The_Queue.ch2_01_queue_class import Queue
+from Data_Structures.DS02_Queue.ch2_01_queue_class import Queue
 
 my_q = Queue()
 my_q.enqueue('a')
