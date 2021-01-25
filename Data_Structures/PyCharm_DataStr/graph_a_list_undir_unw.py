@@ -64,3 +64,4 @@ if __name__ == '__main__':
         g.add_edge(edge[0], edge[1])
 
     g.print_graph()
+    print(g.vertices.items())
