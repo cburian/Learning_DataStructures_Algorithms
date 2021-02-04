@@ -6,6 +6,7 @@ convert decimal to binary
 """
 
 
+""" === 1. Iterative === """
 def dec_to_bin_iter(nr: int):
 
     bin_str = ''
@@ -33,6 +34,7 @@ print('Convert decimal to binary - iterative: ', dec_to_bin_iter(10))
 print('Convert decimal to binary - iterative: ', dec_to_bin_iter2(10))
 
 
+""" === 2. Recursive === """
 def dec_to_bin_rec(nr):
     if nr >= 1:
         dec_to_bin_rec(nr // 2)
