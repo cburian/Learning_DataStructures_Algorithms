@@ -8,17 +8,17 @@ class Stack:
         self.stack = deque()
 
     def push(self, item):
-        """appends item to the end of the list"""
+        """appends item to the top of the stack"""
         self.stack.append(item)
 
     def pop(self):
-        """returns + removes last item (top item)"""
+        """returns + removes last (top) item"""
         if self.stack:
             return self.stack.pop()
         return None
 
     def peek(self):
-        """returns last item in the list"""
+        """returns last item in the stack"""
         if self.stack:
             return self.stack[-1]
         return None
@@ -28,18 +28,18 @@ class Stack:
         return len(self.stack) == 0
 
     def size(self):
-        """returns integer - length of the list (stack)"""
+        """returns integer - length of the stack"""
         return len(self.stack)
 
     def content(self):
-        """returns the list (stack)"""
+        """returns the stack as a list"""
         stack_list = []
         for item in self.stack:
             stack_list.append(item)
         return stack_list
 
     def __str__(self):
-        """returns the list (stack)"""
+        """returns the stack as string"""
         stack_list = ''
         for item in self.stack:
             stack_list += item
