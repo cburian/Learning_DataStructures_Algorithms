@@ -1,4 +1,9 @@
 class Deque:
+    """
+    Deque class
+    front = left side of list
+    back  = right side of the list
+    """
     def __init__(self):
         self.items = []
 
