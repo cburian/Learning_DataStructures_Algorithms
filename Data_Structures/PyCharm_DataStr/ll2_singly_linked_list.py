@@ -3,7 +3,7 @@ from Data_Structures.PyCharm_DataStr.ll1_node import Node
 
 class SllNode(Node):
 
-    __next: None
+    # __next: None
 
     def __init__(self, data):
         super().__init__(data)
@@ -24,7 +24,7 @@ class SLL:
         self.__head = None
 
     def __repr__(self):
-        return f'SLL object, head = {self.__head}'
+        return f'SLL object - head = {self.__head}'
 
     def add_front(self, data):
         new_node = SllNode(data)
