@@ -35,7 +35,7 @@ if __name__ == '__main__':
     ll.insert_rear('c')
     ll.print_sll()
 
-    ll.insert_before('x', )
+    ll.insert_before('x', 0)
     ll.print_sll()
 
     # a = [1, 2, 3]

@@ -6,7 +6,7 @@ class Node:
         self.__data = data
 
     def __repr__(self):
-        return f'Node obj. - data = {self.__data}'
+        return f'Node with data = {self.__data}'
 
     def get_data(self):
         return self.__data
