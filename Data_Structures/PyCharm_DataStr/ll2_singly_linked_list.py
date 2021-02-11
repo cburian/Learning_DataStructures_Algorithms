@@ -26,7 +26,10 @@ class SLL:
     def __repr__(self):
         return f'SLL object - head = {self.__head}'
 
-    def add_front(self, data):
+    def insert_front(self, data):
+        """insert data point at the front of the list
+        time complexity = O(1)
+        space complexity = O(1)"""
         new_node = SllNode(data)
 
         if self.__head:
@@ -37,13 +40,23 @@ class SLL:
         self.__head = new_node
         return
 
-    def add_front_improved(self, data):
-
+    def insert_front_improved(self, data):
+        """better because does not matter if self.__head
+        is None or another node.
+        Steps are the same:
+            1. instantiate new node
+            2. set next for new node = self.__head
+            3. set self.__head = new node
+        time complexity = O(1)
+        space complexity = O(1)"""
         new_node = SllNode(data)
         new_node.set_next(self.__head)
         self.__head = new_node
 
-    def add_rear(self, data):
+    def insert_rear(self, data):
+        """insert data point at the end of the list (APPEND)
+        time complexity = O(n)
+        space complexity = O(1)"""
         new_node = SllNode(data)
 
         current = self.__head
@@ -52,13 +65,78 @@ class SLL:
 
         current.set_next(new_node)
 
-    def add_before(self, node_index):
+    def insert_before(self, data, node_index: int):
+        """insert data before node index
+        ! can not insert before zero
+        ! if node_index > list length -> insert as last element
+
+        ! stupid method - better: insert_at_position
+        ! for the sake of exercise
+
+        Args:
+            data: data point
+            node_index (int): any integer but NOT ZERO
+                (can not insert before zero)
+
+        NOT same thing as insert_at_position.
+            ex: for empty list:
+                1. insert_at_position: we can insert at position 0
+                2. insert_before:      we can NOT insert before position 0"""
+
+        try:
+            # catch exception if not integer:
+            if not isinstance(node_index, int):
+                raise ValueError('node_index must be integer!')
+            # catch exception if zero:
+            if node_index == 0:
+                raise ValueError('node_index must be greater than zero! '
+                                 'Can not insert before position 0!')
+        except ValueError as ve:
+            print(ve)
+            return
+
+        if self.__head:
+
+            new_node = SllNode(data)
+
+            current = self.__head
+            previous = current
+            index = 0
+            while current:
+                if node_index == index:
+                    new_node.set_next(previous.get_next())
+                    previous.set_next(new_node)
+                    return
+                previous = current
+                current = current.get_next()
+                index += 1
+
+            # if node_index > index => add to the end of the list:
+            new_node.set_next(previous.get_next())
+            previous.set_next(new_node)
+            return
+
+        # if empty list -> insert as first element:
+        else:
+            self.insert_front_improved(data)
+
+    def insert_after(self, data, node_index: int):
+        """insert data after node index"""
         pass
 
-    def add_after(self, node_index):
+    def insert_at_position(self, data, position: int):
+        """insert data at position"""
         pass
+        # # if list is empty (head = None) and
+        # # we have to insert at position 0 =>
+        # # we add_front to an empty list:
+        # elif self.__head is None and node_index == 0:
+        # self.insert_front_improved(data)
 
     def remove_front(self):
+        """remove the first element of the list
+        time complexity = O(1)
+        space complexity = O(1)"""
 
         if self.__head:
             self.__head = self.__head.get_next()
@@ -68,6 +146,11 @@ class SLL:
         return
 
     def remove_rear(self):
+        """remove the last element of the list
+        We keep track
+
+        time complexity = O(n)
+        space complexity = O(1)"""
 
         # empty list:
         if self.__head:
@@ -127,25 +210,27 @@ class SLL:
         current = self.__head
         index = 0
         while current:
-            print(current.get_data(), type(current.get_data()))
             if data == current.get_data():
                 return index
             index += 1
             current = current.get_next()
 
-        if not index:
-            print(f'{data} not found in list!')
-            return
+        if not current:
+            # print(f'"{data}" not found in list!')
+            return -1
 
     def print_sll(self):
-        print('=== Singly Linked List Object ===')
+        print('===== Singly Linked List =====')
 
         if self.__head:
-            print(f'head data: {self.__head.get_data()}')
+            index = 0
+            print(f'| data at index {index}: {self.__head.get_data()} - HEAD')
             current = self.__head.get_next()
+
             while current:
-                print(f'data: {current.get_data()}')
+                index += 1
+                print(f'| data at index {index}: {current.get_data()}')
                 current = current.get_next()
         else:
             print('Empty List!')
-        print('=================================')
+        print('==============================')

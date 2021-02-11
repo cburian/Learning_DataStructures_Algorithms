@@ -1,31 +1,52 @@
-from Data_Structures.PyCharm_DataStr.ll2_singly_linked_list import SllNode, SLL
+from Data_Structures.PyCharm_DataStr.ll2_singly_linked_list import SLL
 
 
-sll = SLL()
+def test_list(sll):
+    print('==== List TEST: ====')
+    print()
+    print('print list: ')
+    print(sll)
+    print()
+    print('Test is_empty:')
+    print(f'Is the list empty?: {sll.is_empty()}')
+    print()
+    print('Test search:')
+    print('index of element: ', sll.search('a'))
+    print()
+    print('Test remove_front: ')
+    sll.remove_front()
+    print()
+    print('Test remove_rear: ')
+    sll.remove_rear()
+    print()
+    print('Test size:')
+    print(sll.size())
 
-print(sll)
-print()
-print(f'Is the list empty?: {sll.is_empty()}')
 
-sll.add_front('a')
-print()
-print(sll)
-print('+++')
-sll.print_sll()
-print('+++')
+if __name__ == '__main__':
+    ll = SLL()
+    ll.insert_before('x', 50)
+    ll.print_sll()
 
-sll.add_front_improved('b')
-print()
-print(sll)
+    # test_list(ll)
 
-sll.add_rear('c')
-print()
-print(sll)
+    ll.insert_front('a')
+    ll.insert_front_improved('b')
+    ll.insert_rear('c')
+    ll.print_sll()
 
-print()
-sll.print_sll()
-# print(f'SLL size: {sll.size()}')
-# print(f'Is the list empty?: {sll.is_empty()}')
+    ll.insert_before('x', )
+    ll.print_sll()
+
+    # a = [1, 2, 3]
+    # print(a)
+    # a.insert(40, 'a')
+    # print(a)
 #
-print('aaaa', sll.search('a'))
-
+# print()
+# sll.print_sll()
+# # print(f'SLL size: {sll.size()}')
+# # print(f'Is the list empty?: {sll.is_empty()}')
+# #
+# # print('aaaa', sll.search('f'))
+#
