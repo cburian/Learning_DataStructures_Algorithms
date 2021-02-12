@@ -13,39 +13,53 @@ class SllNode(Node):
         self.__next = next_node
 
     def __repr__(self):
-        return self.get_data()
+        return str(self.get_data())
 
 
 class SLL:
 
-    def __init__(self, nodes=None):
-        """improve to take tuple, *args, one str """
+    def __init__(self, nodes: list = None):
+        """
+        Args:
+            nodes: list
+
+        ! improve to take:
+        tuple, *args, string, string of len = 1, integer
+        """
         self.__head = None
 
-        if hasattr(nodes, '__iter__'):
-            if nodes:
-                node = SllNode(data=nodes.pop(0))
-                self.__head = node
-                for elem in nodes:
-                    node.set_next(SllNode(data=elem))
-                    node = node.get_next()
-        else:
-            self.insert_front(nodes)
+        if nodes:
+            node = SllNode(data=nodes.pop(0))
+            self.__head = node
+            for elem in nodes:
+                node.set_next(SllNode(data=elem))
+                node = node.get_next()
 
     def __repr__(self):
+
         node = self.__head
         nodes = []
 
         while node:
-            print(node)
-            nodes.append(node.get_data())
+            # print(node.get_data())
+            nodes.append(str(node.get_data()))
             node = node.get_next()
 
         # if 'None' not in nodes and self.__head:
         nodes.append('None')
 
-        print(nodes)
         return ' -> '.join(nodes)
+
+    def show(self):
+        """shows liked list as list"""
+        node = self.__head
+        nodes = []
+
+        while node:
+            nodes.append(str(node.get_data()))
+            node = node.get_next()
+
+        print(nodes)
 
     def __iter__(self):
         node = self.__head
@@ -72,12 +86,82 @@ class SLL:
     def insert_rear(self, data):
         node = self.__head
 
-        if node:
-            while node.get_next():
-                node = node.get_next()
+        if node is None:
+            self.__head = SllNode(data)
+            return
+
+        while node.get_next():
+            node = node.get_next()
         node.set_next(SllNode(data))
 
+    def insert_rear2(self, data):
+
+        if self.__head is None:
+            self.__head = SllNode(data)
+            return
+
+        for current_node in self:
+            pass
+        node = SllNode(data)
+        current_node.set_next(node)
+
     def insert_at_index(self, data, index: int):
+
+        # index < 0 or
+        # index not integer or
+        # index greater than list size:
+        if not isinstance(index, int):
+            raise ValueError('Index must be integer.')
+        if index < 0:
+            raise ValueError('Can not insert at negative index.')
+        if index > self.size():
+            raise Exception(f'Index greater than list size. '
+                            f'Can not insert at index: {index} for '
+                            f'a list of size: {self.size()}')
+
+        node = SllNode(data)
+
+        # if list is empty:
+        if self.__head is None:
+            self.__head = node
+            return
+
+        # if index = 0 insert at the front of the list:
+        if index == 0:
+            self.insert_front(data)
+            return
+
+        # if index = size of list -> insert at back of list:
+        if index == self.size():
+            self.insert_rear2(data)
+            return
+
+        current_index = 0
+        previous_node = self.__head
+
+        for current_node in self:
+            if current_index == index:
+                node.set_next(current_node)
+                previous_node.set_next(node)
+                return
+            current_index += 1
+            previous_node = current_node
+            print(f'index: {current_index}, data: '
+                  f'{current_node.get_data()}')
+
+    def insert_before_index(self, new_node, index):
+        pass
+
+    def insert_after_index(self, new_node, index):
+        pass
+
+    def insert_before_data(self, new_node, data_reference):
+        pass
+
+    def insert_after_data(self, new_node, data_reference):
+        pass
+
+    def replace_data(self, data_to_insert, data_to_delete):
         pass
 
     def remove_front(self, data):
@@ -99,10 +183,17 @@ class SLL:
         pass
 
     def size(self):
-        pass
+        node = self.__head
+        length = 0
+
+        while node:
+            length += 1
+            node = node.get_next()
+
+        return length
 
     def is_empty(self):
-        pass
+        return self.__head is None
 
     def search(self, data):
         pass
