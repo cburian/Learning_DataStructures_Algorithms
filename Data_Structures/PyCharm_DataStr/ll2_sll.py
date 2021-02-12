@@ -146,8 +146,6 @@ class SLL:
                 return
             current_index += 1
             previous_node = current_node
-            print(f'index: {current_index}, data: '
-                  f'{current_node.get_data()}')
 
     def insert_before_index(self, new_node, index):
         pass
