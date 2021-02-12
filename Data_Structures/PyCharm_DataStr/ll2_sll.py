@@ -13,12 +13,14 @@ class SllNode(Node):
         self.__next = next_node
 
     def __repr__(self):
-        return self.__data
+        return self.get_data()
 
 
 class SLL:
+
     def __init__(self, nodes=None):
-        # self.__head = None
+        """improve to take tuple, *args, one str """
+        self.__head = None
 
         if hasattr(nodes, '__iter__'):
             if nodes:
@@ -27,18 +29,29 @@ class SLL:
                 for elem in nodes:
                     node.set_next(SllNode(data=elem))
                     node = node.get_next()
-
-        self.__head = nodes
-
+        else:
+            self.insert_front(nodes)
 
     def __repr__(self):
         node = self.__head
+        nodes = []
 
         while node:
+            print(node)
+            nodes.append(node.get_data())
             node = node.get_next()
 
+        # if 'None' not in nodes and self.__head:
+        nodes.append('None')
+
+        print(nodes)
+        return ' -> '.join(nodes)
+
     def __iter__(self):
-        pass
+        node = self.__head
+        while node:
+            yield node
+            node = node.get_next()
 
     def insert_front(self, data):
         """Inserts data at the front of the list.
@@ -57,7 +70,12 @@ class SLL:
         self.__head = new_node
 
     def insert_rear(self, data):
-        pass
+        node = self.__head
+
+        if node:
+            while node.get_next():
+                node = node.get_next()
+        node.set_next(SllNode(data))
 
     def insert_at_index(self, data, index: int):
         pass
